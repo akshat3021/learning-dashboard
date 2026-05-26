@@ -1,36 +1,42 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# LearnOS — Student Learning Dashboard
 
-## Getting Started
+A futuristic student dashboard built for the Frontend Intern Challenge.
 
-First, run the development server:
+## Tech Stack
+- **Framework**: Next.js 16 (App Router)
+- **Database**: Supabase (PostgreSQL)
+- **Styling**: Tailwind CSS v4
+- **Animations**: Framer Motion
+- **Icons**: Lucide React
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## Architecture Decisions
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Server vs Client Components
+- `app/page.tsx` is a **Server Component** — fetches Supabase data on the server, zero client-side data fetching
+- Course tiles, activity graph, and sidebar are **Client Components** (`"use client"`) only where interactivity or browser APIs are needed
+- This gives the best performance: data is ready on first paint
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Supabase Integration
+- Uses `@supabase/supabase-js` with environment variables stored securely in `.env.local`
+- Data fetched server-side via RSC, passed as props to client components
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### Animations
+- Framer Motion `Variants` with `staggerChildren` for sequential tile entrance
+- Spring physics (`type: "spring", stiffness: 300, damping: 24`) on all interactions
+- `layoutId` on sidebar nav for smooth active state transitions
+- `useEffect` + `useState` for activity grid to avoid SSR hydration mismatch
 
-## Learn More
+### Responsive Design
+- Desktop (>1024px): Full sidebar + 3-column bento grid
+- Tablet (768-1024px): Icon-only sidebar + 2-column grid
+- Mobile (<768px): Bottom navigation bar + single column stack
 
-To learn more about Next.js, take a look at the following resources:
+## Setup
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+1. Clone the repo
+2. Install dependencies: `npm install`
+3. Copy `.env.example` to `.env.local` and fill in your Supabase credentials
+4. Run: `npm run dev`
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Environment Variables
+See `.env.example` for required variables.
