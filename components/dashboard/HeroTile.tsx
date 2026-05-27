@@ -40,12 +40,12 @@ export default function HeroTile() {
 
   return (
     <motion.article
-      className="rounded-2xl p-6 md:p-8 relative overflow-hidden border border-white/[0.06] shadow-[0_12px_36px_rgba(0,0,0,0.5)] flex flex-col justify-between"
+      className="rounded-2xl p-5 sm:p-8 relative overflow-hidden border border-white/[0.06] shadow-[0_12px_36px_rgba(0,0,0,0.5)] flex flex-col justify-between"
       style={{
         backgroundImage:
           "linear-gradient(-45deg, #090b0f 0%, #11141e 35%, #0d1017 70%, #090b0f 100%)",
         backgroundSize: "400% 400%",
-        minHeight: "220px",
+        minHeight: "180px",
         willChange: "transform",
       }}
       // Shifting background gradient animation
@@ -63,10 +63,10 @@ export default function HeroTile() {
       <div className="absolute -bottom-10 left-10 w-[200px] h-[200px] bg-indigo-500/[0.04] rounded-full blur-[60px] pointer-events-none" />
 
       {/* Row 1: Greeting & Monospace Clock */}
-      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 z-10">
+      <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4 z-10">
         <div>
           <span
-            className="text-[10px] font-bold uppercase tracking-widest flex items-center gap-1.5 mb-2"
+            className="text-[9px] sm:text-[10px] font-bold uppercase tracking-widest flex flex-wrap items-center gap-1.5 mb-2"
             style={{
               color: "#00d4aa",
               fontFamily: "var(--font-mono), monospace",
@@ -74,29 +74,23 @@ export default function HeroTile() {
           >
             <Sparkles size={11} className="animate-pulse" />
             System Live / Active
+            {time && (
+              <>
+                <span className="text-slate-600 font-normal mx-0.5">•</span>
+                <span className="text-slate-300 font-semibold tracking-wider tabular-nums">
+                  {time}
+                </span>
+                <span className="text-slate-600 font-normal mx-0.5 hidden sm:inline">•</span>
+                <span className="text-slate-500 font-medium tracking-normal normal-case hidden sm:inline">
+                  {dateStr}
+                </span>
+              </>
+            )}
           </span>
           <h2 className="text-2xl sm:text-3xl font-black tracking-tight text-white leading-tight">
             Welcome back, <span className="text-transparent bg-clip-text bg-gradient-to-r from-teal-400 via-emerald-400 to-indigo-400">Akshat</span>.
           </h2>
         </div>
-
-        {/* Digital Clock Widget */}
-        {time && (
-          <div
-            className="flex items-center gap-3 px-3 py-1.5 rounded-xl border border-white/[0.04] bg-slate-950/40 backdrop-blur-md"
-            style={{ fontFamily: "var(--font-mono), monospace" }}
-          >
-            <Clock size={13} className="text-teal-400" />
-            <div className="flex flex-col text-right">
-              <span className="text-slate-100 text-sm font-semibold tracking-wider tabular-nums leading-none">
-                {time}
-              </span>
-              <span className="text-slate-500 text-[9px] font-medium tracking-wide mt-1">
-                {dateStr}
-              </span>
-            </div>
-          </div>
-        )}
       </div>
 
       {/* Row 2: Streak badges + Focus selector */}

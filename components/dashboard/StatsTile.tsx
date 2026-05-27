@@ -15,7 +15,7 @@ export default function StatsTile() {
 
   return (
     <motion.article
-      className="rounded-2xl p-6 h-full flex flex-col glass-panel relative overflow-hidden justify-between border transition-colors duration-300"
+      className="rounded-2xl p-5 sm:p-6 h-full flex flex-col glass-panel relative overflow-hidden justify-between border transition-colors duration-300"
       style={{
         minHeight: "220px",
         willChange: "transform",

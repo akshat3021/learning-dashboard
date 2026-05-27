@@ -71,7 +71,7 @@ export default function CourseTile({
       ref={ref}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
-      className={`rounded-2xl p-5 flex flex-col justify-between relative overflow-hidden border transition-all duration-300 ${accent.shadow} cursor-pointer`}
+      className={`rounded-2xl p-4 sm:p-5 flex flex-col justify-between relative overflow-hidden border transition-all duration-300 ${accent.shadow} cursor-pointer`}
       style={{
         background: "rgba(12, 16, 23, 0.82)",
         backdropFilter: "blur(8px)",

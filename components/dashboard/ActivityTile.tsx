@@ -92,7 +92,7 @@ export default function ActivityTile() {
 
   return (
     <motion.article
-      className="rounded-2xl p-5 md:p-6 glass-panel relative overflow-hidden flex flex-col border transition-colors duration-300"
+      className="rounded-2xl p-4 sm:p-6 glass-panel relative overflow-hidden flex flex-col border transition-colors duration-300"
       whileHover={{
         borderColor: "rgba(0, 212, 170, 0.35)",
         boxShadow: "0 12px 40px -4px rgba(0, 212, 170, 0.18), 0 4px 12px rgba(0,0,0,0.5)",

@@ -36,7 +36,7 @@ export default function Home() {
   return (
     <div className="flex min-h-screen w-full">
       <Sidebar />
-      <main className="flex-1 min-w-0 p-4 md:p-6 lg:p-8 overflow-y-auto pb-24 md:pb-8 flex flex-col">
+      <main className="flex-1 min-w-0 p-4 md:p-6 lg:p-8 overflow-y-auto pb-36 md:pb-8 flex flex-col">
         <div className="flex-1">
           <Suspense fallback={<Loading />}>
             <DashboardContent />
