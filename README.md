@@ -2,6 +2,8 @@
 
 A futuristic, highly animated student dashboard built for the Frontend Intern Challenge.
 
+🚀 **Live Deployment:** [https://learnos-indol.vercel.app/](https://learnos-indol.vercel.app/)
+
 ## Tech Stack
 - **Framework**: Next.js 16 (App Router)
 - **Database**: Supabase (PostgreSQL)
