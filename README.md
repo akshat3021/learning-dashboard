@@ -19,10 +19,10 @@ A futuristic, highly animated student dashboard built for the Frontend Intern Ch
 - **SSR Hydration Safeguard**: Initialized client clock widgets inside `useEffect` hooks to prevent React hydration warnings between server-rendered static layouts and client timezones.
 
 ### 2. Design System: Deep Charcoal & Neon Aurora Glow
-- **Theme**: Dark mode only, relying on space-coal slate backdrops (`#07080a`) instead of standard flat grays.
+- **Theme**: Dark mode only, relying on space coal slate backdrops (`#07080a`) instead of standard flat grays.
 - **Glowing Auroras**: Accentuated by three distinct radial background mesh gradients (Indigo, Teal, Pink) that shift dynamically.
 - **Ambient Shadow Glows**: Course cards feature glowing dropshadow vectors matching their unique accent colors.
-- **Zero Font Blurriness**: Lowered CSS backdrop blur from `16px` to `8px` and configured solid glass fills (`rgba(12, 16, 23, 0.82)`) with subpixel anti-aliasing. This avoids Chrome hardware subpixel rendering artifacts that make text look blurry over highly translucent filters.
+- **Zero Font Blurriness**: Lowered CSS backdrop blur from `16px` to `8px` and configured solid glass fills (`rgba(12, 16, 23, 0.82)`) with subpixel anti aliasing. This avoids Chrome hardware subpixel rendering artifacts that make text look blurry over highly translucent filters.
 
 ### 3. Animations & Micro-interactions
 - **Staggered Page Load**: Bento tiles stagger in sequentially via Framer Motion orchestrators, translating `24px` on the Y-axis.
@@ -30,8 +30,8 @@ A futuristic, highly animated student dashboard built for the Frontend Intern Ch
 - **Segmented controls**: Active states slide and snap into position using Framer Motion `layoutId` tags.
 
 ### 4. Responsiveness
-- **Desktop (>1024px)**: Expanded sidebar alongside a 3-column Bento grid.
-- **Tablet (768px - 1024px)**: Collapsible icon-only sidebar and a 2-column Bento grid.
+- **Desktop (>1024px)**: Expanded sidebar alongside a 3 column Bento grid.
+- **Tablet (768px - 1024px)**: Collapsible icon only sidebar and a 2 column Bento grid.
 - **Mobile (<768px)**: Hidden desktop sidebar replaced by a floating bottom glass navigation bar, with bento tiles stacked vertically.
 
 ---
