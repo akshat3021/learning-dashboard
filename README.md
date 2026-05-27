@@ -1,6 +1,6 @@
 # LearnOS — Student Learning Dashboard
 
-A futuristic student dashboard built for the Frontend Intern Challenge.
+A futuristic, highly animated student dashboard built for the Frontend Intern Challenge.
 
 ## Tech Stack
 - **Framework**: Next.js 16 (App Router)
@@ -9,34 +9,52 @@ A futuristic student dashboard built for the Frontend Intern Challenge.
 - **Animations**: Framer Motion
 - **Icons**: Lucide React
 
+---
+
 ## Architecture Decisions
 
-### Server vs Client Components
-- `app/page.tsx` is a **Server Component** — fetches Supabase data on the server, zero client-side data fetching
-- Course tiles, activity graph, and sidebar are **Client Components** (`"use client"`) only where interactivity or browser APIs are needed
-- This gives the best performance: data is ready on first paint
+### 1. Server vs Client Component Split
+- **Server Component (`app/page.tsx`)**: Fetches active course records dynamically from the Supabase database. Passing data down as static props ensures that the critical page content is server-rendered, loading instantly on first paint and optimizing SEO.
+- **Client Components (`use client`)**: Used selectively for interactive components like the collapsible `Sidebar`, the SVG `StatsTile` sparkline, the contributions `ActivityTile`, and animations.
+- **SSR Hydration Safeguard**: Initialized client clock widgets inside `useEffect` hooks to prevent React hydration warnings between server-rendered static layouts and client timezones.
 
-### Supabase Integration
-- Uses `@supabase/supabase-js` with environment variables stored securely in `.env.local`
-- Data fetched server-side via RSC, passed as props to client components
+### 2. Design System: Deep Charcoal & Neon Aurora Glow
+- **Theme**: Dark mode only, relying on space-coal slate backdrops (`#07080a`) instead of standard flat grays.
+- **Glowing Auroras**: Accentuated by three distinct radial background mesh gradients (Indigo, Teal, Pink) that shift dynamically.
+- **Ambient Shadow Glows**: Course cards feature glowing dropshadow vectors matching their unique accent colors.
+- **Zero Font Blurriness**: Lowered CSS backdrop blur from `16px` to `8px` and configured solid glass fills (`rgba(12, 16, 23, 0.82)`) with subpixel anti-aliasing. This avoids Chrome hardware subpixel rendering artifacts that make text look blurry over highly translucent filters.
 
-### Animations
-- Framer Motion `Variants` with `staggerChildren` for sequential tile entrance
-- Spring physics (`type: "spring", stiffness: 300, damping: 24`) on all interactions
-- `layoutId` on sidebar nav for smooth active state transitions
-- `useEffect` + `useState` for activity grid to avoid SSR hydration mismatch
+### 3. Animations & Micro-interactions
+- **Staggered Page Load**: Bento tiles stagger in sequentially via Framer Motion orchestrators, translating `24px` on the Y-axis.
+- **Hover States**: Cards scale up by `2.5%` using Framer Motion spring physics presets (`stiffness: 350`, `damping: 22`) for organic elasticity.
+- **Segmented controls**: Active states slide and snap into position using Framer Motion `layoutId` tags.
 
-### Responsive Design
-- Desktop (>1024px): Full sidebar + 3-column bento grid
-- Tablet (768-1024px): Icon-only sidebar + 2-column grid
-- Mobile (<768px): Bottom navigation bar + single column stack
+### 4. Responsiveness
+- **Desktop (>1024px)**: Expanded sidebar alongside a 3-column Bento grid.
+- **Tablet (768px - 1024px)**: Collapsible icon-only sidebar and a 2-column Bento grid.
+- **Mobile (<768px)**: Hidden desktop sidebar replaced by a floating bottom glass navigation bar, with bento tiles stacked vertically.
 
-## Setup
+---
 
-1. Clone the repo
-2. Install dependencies: `npm install`
-3. Copy `.env.example` to `.env.local` and fill in your Supabase credentials
-4. Run: `npm run dev`
+## Setup & Run
 
-## Environment Variables
-See `.env.example` for required variables.
+1. **Install dependencies**:
+   ```bash
+   npm install
+   ```
+
+2. **Configure Environment Variables**:
+   Copy `.env.example` to `.env.local` and enter your Supabase connection strings:
+   ```bash
+   cp .env.example .env.local
+   ```
+
+3. **Run Development Server**:
+   ```bash
+   npm run dev
+   ```
+
+4. **Verify Production Build**:
+   ```bash
+   npm run build
+   ```

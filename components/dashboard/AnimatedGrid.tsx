@@ -18,14 +18,14 @@ const itemVariants: Variants = {
 
 export function AnimatedContainer({ children }: { children: React.ReactNode }) {
   return (
-    <motion.div
+    <motion.section
       variants={containerVariants}
       initial="hidden"
       animate="show"
-      className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 w-full"
+      className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 w-full overflow-hidden"
     >
       {children}
-    </motion.div>
+    </motion.section>
   );
 }
 
@@ -43,7 +43,8 @@ export function AnimatedItem({
         scale: 1.015,
         transition: { type: "spring", stiffness: 300, damping: 20 },
       }}
-      className={className}
+      className={`min-w-0 overflow-hidden ${className}`}
+      style={{ willChange: "transform" }}
     >
       {children}
     </motion.div>
